@@ -12,7 +12,10 @@ def TipoAlloggio(APIfield):
                 return row[1]
 
 def DataArrivo(APIfield):
-
+    aaaa = APIfield[0:3]
+    mm = APIfield[5:6]
+    gg = APIfield[8:9]
+    return newdata = (gg + "/" + mm + "/" + aaaa)
 
 def lengthcheck(str):
     print(str)
