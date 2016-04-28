@@ -63,8 +63,24 @@ def lengthcheck(str):
     print(len(str))
 
 
-string = get_csv(file_TipoAlloggi,0,1,"FA") + Data('2016/04/25') + NGiorni('01') + Name('Noris', 50) + Name('Matteo', 30) + 'm'.upper() + Data('1976/10/31') + CodComune("ItALIA", "ALMESE") + CodProvincia("Italia", "rm") + get_csv(file_CodiceNazione,1,0,"BHUTAN") + get_csv(file_CodiceNazione,1,0,"ITaLIA") + get_csv(file_CodiceDocumento,1,0,"PASSAPORTO ORDINARIO") + Name("1234567890", 20) + CodRilascio("ITALIA", "ALMESE")
 
+TipoAlloggi = get_csv(file_TipoAlloggi,0,1,"FA")
+DataArrivo = Data('2016/04/25')
+NumeroGiorni = NGiorni('01')
+Cognome = Name('Noris', 50)
+Nome = Name('Matteo', 30)
+Sesso = 'm'.upper()
+DataNascita = Data('1976/10/31')
+Comune = CodComune("ItALIA", "ALMESE")
+Provincia = CodProvincia("Italia", "rm")
+NazioneNascita = get_csv(file_CodiceNazione,1,0,"BHUTAN")
+NazioneResidenza = get_csv(file_CodiceNazione,1,0,"ITaLIA")
+TipoDocumento = get_csv(file_CodiceDocumento,1,0,"PASSAPORTO ORDINARIO")
+NumeroDocumento = Name("1234567890", 20)
+NazioneRilascio = CodRilascio("ITALIA", "ALMESE")
+
+
+string = TipoAlloggi + DataArrivo + NumeroGiorni + Cognome + Nome + Sesso + DataNascita + Comune + Provincia + NazioneNascita + NazioneResidenza + TipoDocumento + NumeroDocumento + NazioneRilascio
 lengthcheck(string)
 
 
