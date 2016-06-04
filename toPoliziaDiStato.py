@@ -2,6 +2,8 @@ import teolib
 import datetime
 import csv
 
+fileroot = "c://"
+
 crlf = chr(13) + chr(10)
 vettore = []
 file_TipoAlloggi = "Codici_TipoAlloggiato.csv"
@@ -90,7 +92,7 @@ for i in range(0,9):
     else:
         vettore.append(string)
 
-exportfilename = "Alloggiati_" + datetime.datetime.now().strftime("%Y-%m-%d") + "txt"
-teolib.array2file(exportfilename, vettore)
+print exportfilename = fileroot + "Alloggiati_" + datetime.datetime.now().strftime("%Y-%m-%d") + "txt"
+#teolib.array2file(exportfilename, vettore)
 
 #teolib.emailfile("","","",exportfilename)
