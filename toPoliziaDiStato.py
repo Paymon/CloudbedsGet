@@ -67,25 +67,42 @@ def lengthcheck(str):
     print(len(str))
 
 
+print("... importazione prenotazioni ...")
 
-TipoAlloggi = get_csv(file_TipoAlloggi,0,1,"FA")
-DataArrivo = Data('2016/04/25')
-NumeroGiorni = NGiorni('01')
-Cognome = Name('Noris', 50)
-Nome = Name('Matteo', 30)
-Sesso = 'm'.upper()
-DataNascita = Data('1976/10/31')
-Comune = CodComune("ItALIA", "ALMESE")
-Provincia = CodProvincia("Italia", "rm")
-NazioneNascita = get_csv(file_CodiceNazione,1,0,"BHUTAN")
-NazioneResidenza = get_csv(file_CodiceNazione,1,0,"ITaLIA")
-TipoDocumento = get_csv(file_CodiceDocumento,1,0,"PASSAPORTO ORDINARIO")
-NumeroDocumento = Name("1234567890", 20)
-NazioneRilascio = CodRilascio("ITALIA", "ALMESE")
+
+urlapi = "https://hotels.cloudbeds.com/api/getReservationArrivals"
+fromdate = "2016-06-06"
+todate = "2016-06-06"
+reservation = teolib.get_json(urlapi + "?resultsFrom=" + fromdate + "&resultsTo=" + todate)
+
+nrecord = len(reservation['data'])
+print(" sono stati importati record : ", nrecord)
+
+for rec in reservation['data']:
+    print(rec['reservationID'])
+    reservation = teolib.get_json("https://hotels.cloudbeds.com/api/getReservation?reservationID=" + rec['reservationID'])
+    print(reservation['data'])
+
+    TipoAlloggi = get_csv(file_TipoAlloggi,0,1,"FA")
+    DataArrivo = Data('2016/04/25')
+    NumeroGiorni = NGiorni('01')
+    Cognome = Name('Noris', 50)
+    Nome = Name('Matteo', 30)
+    Sesso = 'm'.upper()
+    DataNascita = Data('1976/10/31')
+    Comune = CodComune("ItALIA", "ALMESE")
+    Provincia = CodProvincia("Italia", "rm")
+    NazioneNascita = get_csv(file_CodiceNazione,1,0,"BHUTAN")
+    NazioneResidenza = get_csv(file_CodiceNazione,1,0,"ITaLIA")
+    TipoDocumento = get_csv(file_CodiceDocumento,1,0,"PASSAPORTO ORDINARIO")
+    NumeroDocumento = Name("1234567890", 20)
+    NazioneRilascio = CodRilascio("ITALIA", "ALMESE")
 
 
 string = TipoAlloggi + DataArrivo + NumeroGiorni + Cognome + Nome + Sesso + DataNascita + Comune + Provincia + NazioneNascita + NazioneResidenza + TipoDocumento + NumeroDocumento + NazioneRilascio
 lengthcheck(string)
+
+
 
 
 for i in range(0,9):
@@ -97,6 +114,6 @@ for i in range(0,9):
 exportfilename = fileroot + "Alloggiati_" + datetime.datetime.now().strftime("%Y-%m-%d") + ".txt"
 print(exportfilename)
 
-#teolib.array2file(exportfilename, vettore)
+teolib.array2file(exportfilename, vettore)
 
 #teolib.emailfile("","","",exportfilename)
